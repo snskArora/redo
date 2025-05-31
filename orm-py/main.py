@@ -1,6 +1,6 @@
-from src.sa_orm.base.declare import DatabaseType
-from src.sa_orm.base.conn import createConnection
-from src.sa_orm.base_model import BaseModel
+from sa_orm.base.declare import DatabaseType
+from sa_orm.base.conn import createConnection
+from sa_orm.base_model import BaseModel
 
 
 class User(BaseModel):
