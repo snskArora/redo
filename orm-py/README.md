@@ -21,6 +21,11 @@ pip install -i https://test.pypi.org/simple/ sa_orm
 Once installed, you can run the [main.py](./main.py) file to see an example in action.
 
 To run this you will also need either of MySQL or Postgres instance.
+One way is to run the two sql servers in containers. For that you can use docker compose, mysql server will run on port 10400 and postgressql will run on 10300.
+```sh
+docker compose up -d  # starts the two containers and to stop run `docker compose down`
+docker compose up  # blocks the current terminal
+```
 
 ---
 

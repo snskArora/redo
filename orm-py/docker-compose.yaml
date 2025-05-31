@@ -1,0 +1,32 @@
+services:
+  postgres:
+    image: postgres:16
+    container_name: postgres-db
+    environment:
+      POSTGRES_DB: ormtest
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: SudoPass
+    ports:
+      - "10300:5432"
+    volumes:
+      - ./postgres.sh:/docker-entrypoint-initdb.d/init-multiple-databases.sh
+      - pg_data:/var/lib/postgresql/data
+
+  mysql:
+    image: mysql:8
+    container_name: mysql-db
+    environment:
+      MYSQL_ROOT_PASSWORD: SudoPass
+      MYSQL_DATABASE: ormtest
+      MYSQL_USER: mysql_user
+      MYSQL_PASSWORD: SudoPass
+    ports:
+      - "10400:3306"
+    volumes:
+      - ./mysql.sql:/docker-entrypoint-initdb.d/init-multiple-databases.sql
+      - mysql_data:/var/lib/mysql
+
+volumes:
+  pg_data:
+  mysql_data:
+
