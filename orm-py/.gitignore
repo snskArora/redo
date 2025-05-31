@@ -13,3 +13,4 @@ wheels/
 *.bash
 .ruff_cache/
 .trash/
+log.json

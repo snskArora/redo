@@ -1,10 +1,10 @@
-from base.declare import BaseDC, DatabaseType
+from .base.declare import BaseDC, DatabaseType
 from typing import Dict, List, Any, Optional
 
-from base.ops import BaseOperations
-from mysql_orm.ops import MySQLOperations
-from postgres_orm.ops import PostgreSQLOperations
-from log import Logger
+from .base.ops import BaseOperations
+from .mysql_orm.ops import MySQLOperations
+from .postgres_orm.ops import PostgreSQLOperations
+from .log import Logger
 
 Log = Logger()
 log = Log.log

@@ -1,6 +1,6 @@
 from typing import Dict, List, Any
-from base.ops import BaseOperations
-from base.declare import BaseDC, DatabaseType
+from ..base.ops import BaseOperations
+from ..base.declare import BaseDC, DatabaseType
 
 
 class PostgreSQLOperations(BaseOperations):

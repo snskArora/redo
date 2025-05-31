@@ -1,7 +1,7 @@
 import psycopg
 from typing import Any
-from base.declare import BaseDC, DatabaseType
-from log import Logger
+from ..base.declare import BaseDC, DatabaseType
+from ..log import Logger
 
 Log = Logger()
 log = Log.log

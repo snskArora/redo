@@ -1,8 +1,8 @@
 from typing import Any
 from mysql.connector import connect
 from mysql.connector import Error
-from base.declare import BaseDC, DatabaseType
-from log import Logger
+from ..base.declare import BaseDC, DatabaseType
+from ..log import Logger
 
 Log = Logger()
 log = Log.log

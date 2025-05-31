@@ -1,6 +1,6 @@
-from base.declare import DatabaseType
-from mysql_orm.db import DatabaseConnection as mysqlDC
-from postgres_orm.db import DatabaseConnection as postgresDC
+from .declare import DatabaseType
+from ..mysql_orm.db import DatabaseConnection as mysqlDC
+from ..postgres_orm.db import DatabaseConnection as postgresDC
 
 
 def createConnection(

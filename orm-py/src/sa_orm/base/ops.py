@@ -1,6 +1,6 @@
 from abc import ABC, abstractmethod
 from typing import Dict, List, Any
-from base.declare import BaseDC
+from ..base.declare import BaseDC
 
 
 class BaseOperations(ABC):
