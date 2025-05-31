@@ -1,7 +1,14 @@
 import psycopg
+from typing import Any
+from base.declare import BaseDC, DatabaseType
+from log import Logger
+
+Log = Logger()
+log = Log.log
+dump = Log.log_op
 
 
-class DatabaseConnection:
+class DatabaseConnection(BaseDC):
     """Manages PostgreSQL database connections using psycopg3"""
 
     def __init__(
@@ -12,6 +19,7 @@ class DatabaseConnection:
         user: str = "postgres",
         password: str = "password",
     ):
+        super().__init__(DatabaseType.POSTGRESQL)
         self.connection_params = {
             "host": host,
             "port": port,
@@ -21,22 +29,35 @@ class DatabaseConnection:
         }
         self._connection = None
 
-    def connect(self):
+    def connect(self) -> Any:
         try:
             self._connection = psycopg.connect(**self.connection_params)
             self._connection.autocommit = False
-            print(
-                f"Connected to PostgreSQL database: {self.connection_params['dbname']}"
+            log(
+                f"Connected to PostgreSQL database: {self.connection_params['dbname']}",
+                "DEBUG",
             )
+            log(
+                f"=== Testing Database Connection @{self.connection_params['dbname']} ===",
+                "DEBUG",
+            )
+            with self._connection.cursor() as cursor:
+                cursor.execute("SELECT version()")
+                version = cursor.fetchone()
+                log(f"PostgreSQL version: {version[0]}", "DEBUG")
+
             return self._connection
         except Exception as e:
-            print(f"Error connecting to database: {e}")
+            log(f"Error connecting to database: {e}", "ERROR")
             raise
 
     def disconnect(self):
         if self._connection:
             self._connection.close()
-            print("Database connection closed")
+            log(
+                f"{self.connection_params['host']}:{self.connection_params['port']}@{self.connection_params['dbname']} Database connection closed",
+                "DEBUG",
+            )
 
     @property
     def connection(self):
