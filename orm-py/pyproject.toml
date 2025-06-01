@@ -4,14 +4,19 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "sa_orm"
-version = "0.1.5"
+version = "0.1.6"
 description = "SQL ORM kind of thing"
 readme = "README.md"
 requires-python = ">=3.12"
-dependencies = [
+dependencies = []
+
+[project.optional-dependencies]
+all = [
     "mysql-connector-python>=8.0.25",
     "psycopg>=3.0.0",
 ]
+mysql = [ "mysql-connector-python>=8.0.25" ]
+postgres = [ "psycopg>=3.0.0" ]
 
 [tool.setuptools.packages.find]
 where = ["./src"]

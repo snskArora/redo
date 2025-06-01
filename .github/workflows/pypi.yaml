@@ -2,8 +2,9 @@ name: Push the package to test.pypi
 
 on:
   push:
-    # paths:
-    #   - src/**
+    paths:
+      - orm-py/src/**
+      - orm-py/pyproject.toml
 
 jobs:
   build_distribute:

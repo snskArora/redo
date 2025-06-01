@@ -13,8 +13,14 @@ A lightweight ORM-style wrapper for SQL operations.
 To install the package from Test PyPI:
 
 ```bash
-pip install -i https://test.pypi.org/simple/ sa_orm
+pip install -i https://test.pypi.org/simple/ "sa_orm[all]"  # For both mysql & postgres
+pip install -i https://test.pypi.org/simple/ "sa_orm[postgres]"  # For postgres
+pip install -i https://test.pypi.org/simple/ "sa_orm[mysql]"  # For mysql
 ```
+
+> [!NOTE]
+>
+> `pip install -i https://test.pypi.org/simple/ sa_orm` will just install the base files and the management for depenedencies will have to be be managed you.
 
 ## Usage
 
