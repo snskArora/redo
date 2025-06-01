@@ -23,9 +23,28 @@ Once installed, you can run the [main.py](./main.py) file to see an example in a
 To run this you will also need either of MySQL or Postgres instance.
 One way is to run the two sql servers in containers. For that you can use docker compose, mysql server will run on port 10400 and postgressql will run on 10300.
 ```sh
-docker compose up -d  # starts the two containers and to stop run `docker compose down`
-docker compose up  # blocks the current terminal
+docker compose up -d  # starts the two containers (in the background) and to stop run `docker compose down`
+docker compose up  # foreground container spawn, blocks the current terminal
 ```
+
+### Running the test script
+
+The main.py proved ids a test script with main db and two shadow db are on mysql server and shadowdb3 on postgressql server.
+Below is an example on how it would look like when executed.
+It will
+- Connect to DB
+- Create two tables users and post, post is linked to user with post.user_id = user.u_id
+- Read records
+    - All rows
+    - Rows with a specified condition, age >= 25
+- Delete records
+    - Create a temp record to delete
+    - Delete just the one record
+    - Rreturn the status as true if user not found and false if found
+    - Show the result of user find query
+- Total Records in the tables
+
+The test script was run in an isolated env with the lib download from pypi and db servers from docker compose (to be sure, I stopped mysql and postgres services on my system)
 
 ---
 
@@ -35,6 +54,10 @@ The `multi_write` feature acts like a replication system. Any **write** action p
 
 You can have any number of shadow databases. Also, a primary MySQL database can replicate to PostgreSQL shadows, and vice versa.
 
+✅️ Successful script run
+![image](./.md_resources/success.png)
+🚫 Failed run (giving wrong port to one db obj)
+![image](./.md_resources/err.png)
 ---
 
 ### Getting Started

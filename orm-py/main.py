@@ -14,77 +14,77 @@ class Post(BaseModel):
 
 
 if __name__ == "__main__":
-    db = createConnection(
-        host="localhost",
-        port=5432,
-        database="ormtest",
-        user="postgres",
-        password="SudoPass",
-        db_type=DatabaseType.POSTGRESQL,
-    )
-    #
-    # db1 = createConnection(
+    # db = createConnection(
     #     host="localhost",
-    #     port=5432,
-    #     database="ormtest_m1",
-    #     user="postgres",
-    #     password="SudoPass",
-    #     db_type=DatabaseType.POSTGRESQL,
-    # )
-    #
-    # db2 = createConnection(
-    #     host="localhost",
-    #     port=5432,
-    #     database="ormtest_m2",
-    #     user="postgres",
-    #     password="SudoPass",
-    #     db_type=DatabaseType.POSTGRESQL,
-    # )
-    #
-    # db3 = createConnection(
-    #     host="localhost",
-    #     port=5432,
-    #     database="ormtest_m3",
+    #     port=10300,
+    #     database="ormtest",
     #     user="postgres",
     #     password="SudoPass",
     #     db_type=DatabaseType.POSTGRESQL,
     # )
 
-    # db = createConnection(
+    # db1 = createConnection(
     #     host="localhost",
-    #     port=3306,
-    #     database="ormtest",
-    #     user="mysql_user",
+    #     port=10300,
+    #     database="ormtest_m1",
+    #     user="postgres",
     #     password="SudoPass",
-    #     db_type=DatabaseType.MYSQL,
+    #     db_type=DatabaseType.POSTGRESQL,
     # )
-    #
+
+    # db2 = createConnection(
+    #     host="localhost",
+    #     port=10300,
+    #     database="ormtest_m2",
+    #     user="postgres",
+    #     password="SudoPass",
+    #     db_type=DatabaseType.POSTGRESQL,
+    # )
+
+    db3 = createConnection(
+        host="localhost",
+        port=10300,
+        database="ormtest_m3",
+        user="postgres",
+        password="SudoPass",
+        db_type=DatabaseType.POSTGRESQL,
+    )
+
+    db = createConnection(
+        host="localhost",
+        port=10400,
+        database="ormtest",
+        user="root",
+        password="SudoPass",
+        db_type=DatabaseType.MYSQL,
+    )
+
     db1 = createConnection(
         host="localhost",
-        port=3306,
+        port=10400,
         database="ormtest_m1",
-        user="mysql_user",
+        user="root",
         password="SudoPass",
         db_type=DatabaseType.MYSQL,
     )
 
     db2 = createConnection(
         host="localhost",
-        port=3306,
+        port=10400,
         database="ormtest_m2",
-        user="mysql_user",
+        user="root",
         password="SudoPass",
         db_type=DatabaseType.MYSQL,
     )
 
-    db3 = createConnection(
-        host="localhost",
-        port=5432,
-        database="ormtest_m3",
-        user="postgres",
-        password="SudoPass",
-        db_type=DatabaseType.POSTGRESQL,
-    )
+    # db3 = createConnection(
+    #     host="localhost",
+    #     port=10400,
+    #     database="ormtest_m3",
+    #     user="root",
+    #     password="SudoPass",
+    #     db_type=DatabaseType.MYSQL,
+    # )
     User.set_database([db, db1, db2, db3])
     Post.set_database([db, db1, db2, db3])
 
@@ -138,7 +138,7 @@ if __name__ == "__main__":
         all_users = User.find_all()
         print(f"All users: {all_users}")
 
-        adult_users = User.find_all("age >= %s", (25,))
+        adult_users = User.find_all("age >= %s", (22,))
         print(f"Adult users: {adult_users}")
 
         print("\n=== Updating Records ===")

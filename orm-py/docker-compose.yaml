@@ -18,8 +18,6 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: SudoPass
       MYSQL_DATABASE: ormtest
-      MYSQL_USER: mysql_user
-      MYSQL_PASSWORD: SudoPass
     ports:
       - "10400:3306"
     volumes:
