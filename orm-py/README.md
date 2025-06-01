@@ -46,6 +46,11 @@ It will
 
 The test script was run in an isolated env with the lib download from pypi and db servers from docker compose (to be sure, I stopped mysql and postgres services on my system)
 
+✅️ Successful script run
+![image](./.md_resources/success.png)
+🚫 Failed run (giving wrong port to one db obj)
+![image](./.md_resources/err.png)
+
 ---
 
 ## Multi-Write (Replication Support)
@@ -54,10 +59,6 @@ The `multi_write` feature acts like a replication system. Any **write** action p
 
 You can have any number of shadow databases. Also, a primary MySQL database can replicate to PostgreSQL shadows, and vice versa.
 
-✅️ Successful script run
-![image](./.md_resources/success.png)
-🚫 Failed run (giving wrong port to one db obj)
-![image](./.md_resources/err.png)
 ---
 
 ### Getting Started
@@ -138,7 +139,8 @@ User.create_table(
 ### Planned Improvements:
 
 - [ ] Restructure The files and populate init files for better library import structure
-- [ ] Add table replication feature for shadow DBs
+- [ ] Add table replication feature for shadow DBs (for the case when shadows are added after table creation)
+- [ ] Add logger to all methods
 - [ ] Add backfill feature
 - [ ] Move to Pydantic model for defining tables (Similar to SQLModel)
 - [ ] Adding loacking for r/w protection
