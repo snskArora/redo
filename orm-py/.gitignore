@@ -14,3 +14,4 @@ wheels/
 .ruff_cache/
 .trash/
 log.json
+src/main.py

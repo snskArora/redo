@@ -1,0 +1,36 @@
+name: Push the package to test.pypi
+
+on:
+  push:
+    # paths:
+    #   - src/**
+
+jobs:
+  build_distribute:
+    runs-on: ubuntu-latest
+    environment: pypi
+    steps:
+      - name: checkout repo
+        uses: actions/checkout@v4
+
+      - name: install
+        run: |
+          curl -LsSf https://astral.sh/uv/install.sh | sh
+          sudo apt-get install jq
+
+      - name: Check Package version
+        shell: bash
+        run: |
+          cd orm-py
+          [[ "$(uv version --short)" != $(curl -s https://test.pypi.org/pypi/sa_orm/json | jq -r '.info.version') ]] || \
+          (echo "$(uv version --short) already exists" && exit 1)
+
+      - name: Build package
+        run: cd orm-py && uv build
+
+      - name: Publish package distributions to TestPyPI
+        uses: pypa/gh-action-pypi-publish@release/v1
+        with:
+          repository-url: https://test.pypi.org/legacy/
+          password: ${{ secrets.PYPITOKEN }}
+          packages-dir: orm-py/dist
